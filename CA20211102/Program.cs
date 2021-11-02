@@ -32,26 +32,37 @@ namespace CA20211102
             // pl. legnagyobb súly
             float res_05 = emberek.Max(x => x.Suly);
 
-            //
+            //Első/Utolsó <T>-nek megfelelő elem
+            //pl. első verebélyes
+            Ember res_06 = emberek.First(x => x.Iskola == "Verebely");
+            //ha nincs ilyen elem, akkor exception
+            Ember res_16 = emberek.FirstOrDefault(x => x.Iskola == "Verebely");
+            //pl. utolsó 180 cm-nél alacsonyabb
+            Ember res_07 = emberek.Last(x => x.Suly < 180);
+            Ember res_17 = emberek.LastOrDefault(x => x.Suly < 180);
+            //<T>nek megfelelő száma
+            IEnumerable<Ember> res_08 = emberek.Where(x => x.Iskola == "Verebely");
+            //ha ebből szeretnénk egy "normál" listát:
+            List<Ember> res_09 = res_08.ToList();
 
+            //Csak adott tulajdonságok listája
+            IEnumerable<string> res_10 = emberek.Select(x => x.Nev);
+            //ezt is lehet listává alakítani
+            List<string> res_11 = res_10.ToList();
 
+            //Rendezés
+            //születésdatum dátum szerint növekvőbe:
+            IOrderedEnumerable<Ember> res_12 = emberek.OrderBy(x => x.Szul);
+            //suly szerint csökkenőbe:
+            IOrderedEnumerable<Ember> res_13 = emberek.OrderByDescending(x => x.Suly);
 
+            //Tartalmaz <T>-t?
+            //pl. Tartalmaz-e Kiss Pista nevű embert:
+            bool res_14 = emberek.Any(x => x.Nev == "Kiss Pista");
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            //Csoportosítás
+            //pl. iskola szerinti csoportosítás:
+            IEnumerable<IGrouping<string, Ember>> res_15 = emberek.GroupBy(x => x.Iskola);
 
 
 
